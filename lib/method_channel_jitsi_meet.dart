@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -86,15 +85,7 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   }
 
   @override
-  toggleShare() {
-    _channel.invokeMethod('toggleShareScreen');
-    // api?.executeCommand('toggleShareScreen', ['true']);
-  }
-
-  @override
-  void executeCommand(String command, List<String> args) {
-    // api?.executeCommand(command, args);
-  }
+  void executeCommand(String command, List<String> args) {}
 
   @override
   Widget buildView(List<String> extraJS) {
@@ -134,14 +125,6 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
           if (listener.onConferenceTerminated != null)
             listener.onConferenceTerminated!(message);
           break;
-        case "onPictureInPictureWillEnter":
-          if (listener.onPictureInPictureWillEnter != null)
-          listener.onPictureInPictureWillEnter!(message);
-          break;
-        case "onPictureInPictureTerminated":
-          if (listener.onPictureInPictureTerminated != null)
-          listener.onPictureInPictureTerminated!(message);
-          break;
       }
     });
   }
@@ -163,14 +146,6 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
         case "onConferenceTerminated":
           if (listener.onConferenceTerminated != null)
             listener.onConferenceTerminated!(message);
-          break;
-        case "onPictureInPictureWillEnter":
-          if (listener.onPictureInPictureWillEnter != null)
-          listener.onPictureInPictureWillEnter!(message);
-          break;
-        case "onPictureInPictureTerminated":
-          if (listener.onPictureInPictureTerminated != null)
-          listener.onPictureInPictureTerminated!(message);
 
           // Remove the listener from the map of _perMeetingListeners on terminate
           _perMeetingListeners.remove(listener);
